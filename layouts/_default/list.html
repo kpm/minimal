@@ -4,6 +4,12 @@
 
     <h2>{{ .Title }}</h2>
 
+    <ul>
+    <!-- Ranges through content/posts/*.md -->
+    {{ range .Pages }}
+                {{ .Render "li"}}
+    {{ end }}
+    </ul>
     {{ range (.Paginator 5).Pages }} {{ partial "list-item" . }} {{ end }}
 
 </main>

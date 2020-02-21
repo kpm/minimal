@@ -3,8 +3,21 @@
 <main>
     <div class="intro">
         {{ with .Site.Params.profilePic }} <img class="profile" src="{{ . }}"> {{ end }}
-        <h1>{{ .Site.Title }}</h1>
+        <h2>{{ .Site.Title }}</h2>
         <h2>{{ markdownify .Site.Params.Description }}</h2>
+	<ul>
+        <!-- Renders the li.html content view for each content/posts/*.md -->
+            {{ range .Pages }}
+		{{ range .Pages }}
+	<div>
+            <h3><a href="{{.Permalink}}">{{ .Title }}</a></h3>
+            <h5>{{ .Description }}</h5>
+		<h5>{{.Date.Format "2006-01-02"}}</h5>
+            {{ partial "tags" . }}
+	</div>
+		{{ end }}
+            {{ end }}
+        </ul>
         {{ with .Content }} <div class="homepage-content text-justify">{{ . }}</div> {{ end }}
     </div>
 </main>
